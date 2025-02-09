@@ -1,32 +1,43 @@
 /* eslint-disable react/prop-types */
-/* eslint-disable no-undef */
 import { useEffect, useState } from "react";
+import PropTypes from "prop-types";
 import Header from "./Header";
 import SideBar from "./SideBar";
 import { useTheme } from "@mui/material/styles";
 import { Box, Container, useMediaQuery } from "@mui/material";
+
 const Layout = ({ children }) => {
   const theme = useTheme();
-  let matches = useMediaQuery(theme.breakpoints.down("md"));
-  const [SidebarOpen, setSideBarShow] = useState(matches);
-  const handleSidebar = () => {
-    setSideBarShow((prevSidebarOpen) => !prevSidebarOpen);
-  };
+  const matches = useMediaQuery(theme.breakpoints.down("md"));
+  
+  // Sidebar state management
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
   useEffect(() => {
-    setSideBarShow(matches);
+    setSidebarOpen(matches);
   }, [matches]);
-  // End Side Bar Show  and Hide Manage
+
+  // Toggle Sidebar
+  const toggleSidebar = () => {
+    setSidebarOpen((prev) => !prev);
+  };
+
   return (
     <>
       {/* Header */}
-      <Header handleSidebar={handleSidebar} />
+      <Header handleSidebar={toggleSidebar} />
       {/* Sidebar */}
       <Box sx={{ display: "flex", height: "100vh", mt: 10 }}>
-        <SideBar SidebarOpen={SidebarOpen} />
-        <Container maxWidth='lg'>{children}</Container>
+        <SideBar SidebarOpen={sidebarOpen} />
+        <Container maxWidth="lg">{children}</Container>
       </Box>
     </>
   );
+};
+
+// PropTypes validation
+Layout.propTypes = {
+  children: PropTypes.node.isRequired,
 };
 
 export default Layout;
