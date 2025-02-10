@@ -29,7 +29,7 @@ const app = express();
 
 // ✅ Enhanced CORS Configuration
 app.use(cors({
-  origin: ["http://localhost:3000", "https://yourfrontenddomain.com"], // Allowed Frontend URLs
+  origin: ["http://localhost:5173", "https://yourfrontenddomain.com"], // Allowed Frontend URLs
   methods: ["GET", "POST", "PUT", "DELETE"], // Allowed HTTP Methods
   allowedHeaders: ["Content-Type", "Authorization"], // Allowed Headers
   credentials: true // Allow cookies (if using authentication)
