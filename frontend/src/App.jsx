@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
 // * Pages
 import Team from "./pages/Team";
-import Layout from "./components/layout";
+import Layout from "./components/Layout";
 import Player from "./pages/Player";
 import Match from "./pages/Match";
 import LiveMatchMonitor from "./pages/LiveMatchMonitor";
